@@ -1,0 +1,23 @@
+# Node modules (라이브러리 폴더)
+node_modules/
+
+# 환경 설정 파일
+.env
+
+# 로그 파일
+*.log
+
+# 운영체제별 설정
+.DS_Store        # macOS
+Thumbs.db        # Windows
+
+# 빌드 결과물
+dist/
+build/
+
+# IDE 관련 설정
+.vscode/
+.idea/
+
+# 캐시
+.cache/
