@@ -7,6 +7,7 @@ exports.insertChat = async (userId, question, answer) => {
         [userId, question, answer]
     );
     conn.release();
+    console.log("test");
 };
 
 exports.getChatsByUserId = async (userId) => {
