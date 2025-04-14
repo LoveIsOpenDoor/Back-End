@@ -20,6 +20,7 @@ exports.login = async (req, res) => {
     try {
         const user = await userModel.getUserById(userId);
         if (!user) {
+            
             return res.status(401).json({ error: '아이디가 존재하지 않아요' });
         }
 
