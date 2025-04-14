@@ -3,7 +3,6 @@ const chatModel = require('../models/chatModel');
 
 exports.sendChat = async (req, res) => {
     const { userId, question } = req.body;
-
     try {
         const gptResponse = await axios.post('https://api.openai.com/v1/chat/completions', {
             model: "gpt-3.5-turbo",
