@@ -1,0 +1,30 @@
+name: Build & Push Docker Image     # 이 워크플로우 이름
+
+on:
+  push:
+    branches:
+      - main                        # main 브랜치에 push되면 실행
+
+jobs:
+  build:                            # 작업 이름
+    runs-on: ubuntu-latest          # 실행 환경: GitHub이 임시로 주는 Ubuntu 서버
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v3   # 코드 받아오기
+
+      - name: Docker 빌드도구 설정
+        uses: docker/setup-buildx-action@v2
+
+      - name: Docker Hub 로그인
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker 이미지 빌드 + 푸시
+        uses: docker/build-push-action@v5
+        with:
+          context: /                   # Dockerfile이 있는 폴더
+          push: true                           # 빌드 후 Docker Hub로 푸시
+          tags: peterseo9503/love-backend:latest
