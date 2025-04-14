@@ -7,8 +7,15 @@ exports.insertUser = async (userId, hashedPW) => {
 };
 
 exports.getUserById = async (userId) => {
-    const conn = await pool.getConnection();
-    const [rows] = await conn.execute(`SELECT * FROM users WHERE user_id=?`, [userId]);
-    conn.release();
-    return rows[0];
+    try {
+        const conn = await pool.getConnection();
+        const [rows] = await conn.execute(`SELECT * FROM users WHERE user_id=?`, [userId]);
+        conn.release();
+
+        console.log("[getUserById 결과]", rows);  // 확인용 로그
+        return rows[0];
+    } catch (err) {
+        console.error("[getUserById 에러]", err.message);
+        throw err;  // 로그인 쪽 catch로 던짐
+    }
 };
