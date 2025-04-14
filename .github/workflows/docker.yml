@@ -25,6 +25,6 @@ jobs:
       - name: Docker 이미지 빌드 + 푸시
         uses: docker/build-push-action@v5
         with:
-          context: /                   # Dockerfile이 있는 폴더
+          context: .                   # Dockerfile이 있는 폴더
           push: true                           # 빌드 후 Docker Hub로 푸시
           tags: peterseo9503/love-backend:latest
