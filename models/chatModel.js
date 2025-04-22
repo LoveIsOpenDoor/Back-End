@@ -11,7 +11,7 @@ exports.insertChat = async (userId, question, answer) => {
 
 exports.getChatsByUserId = async (userId) => {
     const conn = await pool.getConnection();
-    const [rows] = await conn.query(`SELECT * FROM chat_logs WHERE user_id = ?`, [userId]);
+    const [rows] = await conn.query(`SELECT * FROM chat_logs WHERE user_id = ? ORDER BY create_at DESC`, [userId]);
     conn.release();
     return rows;
 };
